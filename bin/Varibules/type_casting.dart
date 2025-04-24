@@ -2,7 +2,7 @@
 void main() {
   String name = 'Ahmed Khaled (Darwish)';
   int age = 24;
-  int height = 177, weight = 110;
+  int height = 177, weight = 100;
   print(
     "$name, $age years old, my weight is $weight kg and my height is $height cm",
   );
