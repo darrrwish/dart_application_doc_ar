@@ -1,4 +1,21 @@
 enum WeekDay { sunday, monday, tuesday, wednesday, thursday, friday, saturday }
+/*
+• لا يمكن تعريف enum داخل class في Dart؛ يجب أن يكون في المستوى الأعلى من الملف أو داخل مكتبة.
+• تصميم اللغة يفصل بين تعريف أنواع البيانات (types) وتنفيذ المنطق، مما يمنع التعشيش داخل class.
+• الكومبيلور بتاع Dart يحتاج لمعرفة جميع أنواع البيانات قبل تحليل الكود التنفيذي.
+*/
+
+//المترجم (compiler) يحتاج أن يعرف جميع أنواع البيانات قبل أن يبدأ في تحليل الكود الذي يستخدمها. وجود enum داخل class سيعقد هذه العملية ويخلق حالات خاصة غير مدعومة حالياً.
+
+/*
+طب منا بكتب استرنج تحت عادي?
+لأن ف فرق بين:
+تعريف نوع جديد (مثل enum)
+إعلان متغير (مثل String)
+
+فالـ enum هو تعريف Type جديد، ولذا يجب أن يكون في المستوى الأعلى من الملف.
+أما الـ String اللي بتكتبه تحت في الكود هو إعلان متغير أو قيمة من نوع موجود أصلاً (String)، والإعلانات مسموح بها داخل الـ class أو الدوال.
+*/
 
 void main() {
   //!(if statement)
@@ -60,32 +77,92 @@ void main() {
   if (dayOfWeek >= 1 && dayOfWeek <= 7) {
     day = WeekDay.values[dayOfWeek - 1]; // تحويل الرقم إلى enum
   }
+  switch (day) {
+    case WeekDay.sunday:
+      print("Day is Sunday.");
+      break;
+    case WeekDay.monday:
+      print("Day is Monday.");
+      break;
+    case WeekDay.tuesday:
+      print("Day is Tuesday.");
+      break;
+    case WeekDay.wednesday:
+      print("Day is Wednesday.");
+      break;
+    case WeekDay.thursday:
+      print("Day is Thursday.");
+      break;
+    case WeekDay.friday:
+      print("Day is Friday.");
+      break;
+    case WeekDay.saturday:
+      print("Day is Saturday.");
+      break;
+    default:
+      // هذا الفرع يلتقط القيمة null أو أي قيمة أخرى غير متوقعة
+      print("Invalid Weekday.");
 
-  if (day == null) {
-    print("Invalid Weekday.");
-  } else {
-    switch (day) {
-      case WeekDay.sunday:
-        print("Day is Sunday.");
-        break;
-      case WeekDay.monday:
-        print("Day is Monday.");
-        break;
-      case WeekDay.tuesday:
-        print("Day is Tuesday.");
-        break;
-      case WeekDay.wednesday:
-        print("Day is Wednesday.");
-        break;
-      case WeekDay.thursday:
-        print("Day is Thursday.");
-        break;
-      case WeekDay.friday:
-        print("Day is Friday.");
-        break;
-      case WeekDay.saturday:
-        print("Day is Saturday.");
-        break;
-    }
+      //-------------------------------
+
+      // حل اخر باستخدام switch case
+      switch (day) {
+        case WeekDay.sunday:
+          print("Day is Sunday.");
+          break;
+        case WeekDay.monday:
+          print("Day is Monday.");
+          break;
+        case WeekDay.tuesday:
+          print("Day is Tuesday.");
+          break;
+        case WeekDay.wednesday:
+          print("Day is Wednesday.");
+          break;
+        case WeekDay.thursday:
+          print("Day is Thursday.");
+          break;
+        case WeekDay.friday:
+          print("Day is Friday.");
+          break;
+        case WeekDay.saturday:
+          print("Day is Saturday.");
+          break;
+        case null:
+          // هذه الحالة تغطي day == null
+          print("Invalid Weekday.");
+          break;
+      }
+
+      //-------------------------------
+
+      // حل اخر شرط و السويتش
+      if (day == null) {
+        print("Invalid Weekday.");
+      } else {
+        switch (day) {
+          case WeekDay.sunday:
+            print("Day is Sunday.");
+            break;
+          case WeekDay.monday:
+            print("Day is Monday.");
+            break;
+          case WeekDay.tuesday:
+            print("Day is Tuesday.");
+            break;
+          case WeekDay.wednesday:
+            print("Day is Wednesday.");
+            break;
+          case WeekDay.thursday:
+            print("Day is Thursday.");
+            break;
+          case WeekDay.friday:
+            print("Day is Friday.");
+            break;
+          case WeekDay.saturday:
+            print("Day is Saturday.");
+            break;
+        }
+      }
   }
 }
